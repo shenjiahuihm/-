@@ -25,7 +25,7 @@ void f(){
 
 ```java
 //: InitialValues.java 
-// Shows default initial values 
+// 展示默认初始化值 
 class Measurement { 
     boolean t; 
     char c; 
