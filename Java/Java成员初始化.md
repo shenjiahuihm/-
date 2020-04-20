@@ -314,3 +314,63 @@ public class ExplicitStatic {
 如果把标为（1）和（2）的行同时注释掉，Cups的静态初始化动作就不会进行。
 
 此外，激活一行还是两行标为（2）的代码（即解除注释）都无关紧要，静态初始化动作只进行一次。
+
+### 非静态实例初始化
+
+```java
+//: Mugs.java 
+// Java 1.1 "Instance Initialization" 
+class Mug { 
+    Mug(int marker) { 
+        System.out.println("Mug(" + marker + ")"); 
+    }
+    void f(int marker) { 
+        System.out.println("f(" + marker + ")"); 
+    } 
+}
+public class Mugs { 
+    Mug mug1; 
+    Mug mug2; 
+    { 
+        mug1 = new Mug(1); 
+        mug2 = new Mug(2); 
+        System.out.println("mug1 & mug1 initialized"); 
+    }
+    Mugs() { 
+        System.out.println("Mugs()"); 
+    }
+    Mugs(int i){
+        System.out.println("Mugs(int)")
+    }
+    public static void main(String[] args) { 					 	System.out.println("Inside main()"); 
+        new Mugs();
+        System.out.println("new Mugs() completed");                 new Mugs(1)
+        System.out.println("new Mugs(1) completed");
+    } 
+} /* Output:
+Inside main()
+Mug(1)
+Mug(2)
+mug1 & mug1 initialized
+Mugs()
+new Mugs() completed
+Mug(1)
+Mug(2)
+mug1 & mug1 initialized
+Mugs(int)
+new Mugs(1) completed
+*///:~
+
+```
+
+你可以看到实例初始化子句： 
+
+```
+{ 
+    mug1 = new Mug(1); 
+    mug2 = new Mug(2); 
+    System.out.println("mug1 & mug2 initialized");
+}
+```
+
+看起来它与静态初始化子句一模一样，只不过少了static关键字。这种语法对于支持“匿名内部类”的初始化时必须的，但是它也使得你可以保证无论调用了哪个显式构造器，某些操作都会发生。从输出中可以看到实例初始化子句是在两个构造器之前执行的。
