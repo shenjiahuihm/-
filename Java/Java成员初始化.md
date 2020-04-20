@@ -256,13 +256,61 @@ static初始化只有在必要的时候才会进行。如果不创建一个Table
 总结一下对象的创建过程。请考虑一个名为Dog的类： 
 
 1. 类型为Dog的一个对象首次创建时，或者Dog类的static方法／static字段首次访问时， Java解释器必须找到Dog.class（在事先设好的类路径里搜索）。 
-
 2. 找到Dog.class后（它会创建一个Class对象，这将在后面学到），它的所有static初始化模 块都会运行。因此，static初始化仅发生一次——在Class对象首次载入的时候。 
-
 3. 创建一个new Dog()时，Dog对象的构建进程首先会在内存堆（Heap）里为一个Dog对象 分配足够多的存储空间。 
-
 4. 这种存储空间会清为零，将Dog中的所有基本类型设为它们的默认值（对数字来说是0，对 布尔型和字符型也相同）。 
-
 5. 执行所有出现于字段定义处的初始化动作。 
-
 6. 执行构造器。会牵涉很多继承的东西。 
+
+### 显示的静态初始化
+
+​	Java允许将多个静态初始化动作组织成一个特殊的“**静态子句**”（有时也叫做“静态块”）。就像下面这样：
+
+```
+public class Spoon{
+	static int i;
+	static {
+		i = 47;
+	}
+}
+```
+
+与其他静态初始化动作一样，这段代码仅执行一次：当首次生成这个类的一个对象时，或者首次访问属于那个类的静态数据成员时（即便从未生成过那个类的对象）。例如：
+
+```java
+public class Cup {
+  Cup(int marker){
+    System.out.println("Cup("+marker+")");
+  }
+  void f(int marker){
+    System.out.println("f("+ marker+")");
+  }
+}
+
+public class Cups {
+  static Cup cup1;
+  static Cup cup2;
+  static{
+    cup1 = new Cup(1);
+    cup2 = new Cup(2);
+  }
+  Cups(){
+    System.out.println("Cups");
+  }
+}
+
+public class ExplicitStatic {
+  public static void main(String args[]) {
+    System.out.println("Inside main()");
+    Cups.cup1.f(99);(1)
+  }
+  // static Cups cups1 = new Cups();(2)
+  // static Cups cups2 = new Cups();(2)
+}
+```
+
+无论是运行（1）的代码还是运行（2）的代码，Cups的静态初始化动作都会得到执行。
+
+如果把标为（1）和（2）的行同时注释掉，Cups的静态初始化动作就不会进行。
+
+此外，激活一行还是两行标为（2）的代码（即解除注释）都无关紧要，静态初始化动作只进行一次。
