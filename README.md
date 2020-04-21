@@ -13,3 +13,6 @@
 [Java之成员初始化](https://github.com/shenjiahuihm/note/blob/master/Java/Java%E6%88%90%E5%91%98%E5%88%9D%E5%A7%8B%E5%8C%96.md)
 
 [Java之可变参数列表](https://github.com/shenjiahuihm/note/blob/master/Java/Java可变参数列表.md)
+
+[Java之枚举类型](https://github.com/shenjiahuihm/note/blob/master/Java/Java枚举类型.md)
+
