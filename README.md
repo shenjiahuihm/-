@@ -16,3 +16,5 @@
 
 [Java之枚举类型](https://github.com/shenjiahuihm/note/blob/master/Java/Java枚举类型.md)
 
+[Java之访问权限](https://github.com/shenjiahuihm/note/blob/master/Java/Java%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90.md)
+
