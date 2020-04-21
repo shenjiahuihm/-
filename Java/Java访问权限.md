@@ -21,19 +21,76 @@ Java一共有四种访问权限，按照权限由大到小分别为public、prot
 
 ClassA：
 
-![](https://github.com/shenjiahuihm/note/blob/master/imgs/Java/ClassA.png)
+```java
+package test1;
+
+public class ClassA {
+  public void showA1() {
+    System.out.println("publicMethod");
+  }
+  protected void showA2() {
+    System.out.println("protectedMethod");
+  }
+  void showA3() {
+    System.out.println("defaultMethod");
+  }
+  private void showA4() {
+    System.out.println("privateMethod");
+  }
+}
+```
 
 ClassA中从上到下分别是public、protected、default、private方法。
 
 ClassB：
 
-![](https://github.com/shenjiahuihm/note/blob/master/imgs/Java/ClassB.png)
+```java
+package test1;
+
+public class ClassB {
+  public void show(){
+    ClassA a =new ClassA();
+    a.showA1(); // 可以访问
+    a.showA2(); // 可以访问
+    a.showA3();	// 可以访问
+    a.showA4();	// 不可以访问
+
+    showA1(); // 不可以访问
+    showA2(); // 不可以访问
+    showA3(); // 不可以访问
+    showA4(); // 不可以访问
+  }
+}
+```
+
+
 
 ClassB因为与ClassA是同一个包，所以可以通过A的实例访问除了private以外的方法或变量。
 
 ClassC：
 
-![](https://github.com/shenjiahuihm/note/blob/master/imgs/Java/ClassC.png)
+```java
+package test2;
+
+import test1.ClassA;
+
+public class ClassC extends ClassA{
+  public void show(){
+    ClassA a = new ClassA();
+    a.showA1(); // 可以访问
+    a.showA2(); // 不可以访问
+    a.showA3(); // 不可以访问
+    a.showA4(); // 不可以访问
+
+    showA1(); // 可以访问
+    showA2(); // 可以访问
+    showA3(); // 不可以访问
+    showA4(); // 不可以访问
+  }
+}
+```
+
+
 
 ClassC继承了ClassA，尽管它们在不同的包，但ClassC依然能直接访问protected方法，但是不能通过ClassA的实例访问。
 
@@ -45,6 +102,26 @@ ClassC继承了ClassA，尽管它们在不同的包，但ClassC依然能直接�
 
 ClassD：
 
-![](https://github.com/shenjiahuihm/note/blob/master/imgs/Java/ClassD.png)
+```java
+package test2;
+import test1.ClassA;
+
+public class ClassD {
+  public void show(){
+    ClassA a = new ClassA();
+    a.showA1(); // 可以访问
+    a.showA2(); // 不可以访问
+    a.showA3(); // 不可以访问
+    a.showA4(); // 不可以访问
+
+    showA1(); // 不可以访问
+    showA2(); // 不可以访问
+    showA3(); // 不可以访问
+    showA4(); // 不可以访问
+  }
+}
+```
+
+
 
 ClassD也很好理解了，不同包下只有public是可见的。
