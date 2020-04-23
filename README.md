@@ -1,5 +1,7 @@
 ## 目录
 
+写了一年多的vue，然后春招地时候啥也没好好准备地去面了几个大厂的前端岗位，结果当然是一个字——惨。于是我痛定思痛，决定好好复习……………………………………Java。
+
 ### 数据结构
 
 [栈]( https://github.com/shenjiahuihm/Data-structure-and-algorithm/blob/master/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%88.md)
