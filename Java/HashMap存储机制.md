@@ -38,7 +38,7 @@
 1. **线性探测** 
    以增量序列 1，2，……，（TableSize -1）循环试探下一个存储地址，即di = i。如果table[index+di]为空则进行插入，反之试探下一个增量。但是线性探测也有弊端，就是会造成元素聚集现象，降低查找效率。
 
-![]([https://github.com/shenjiahuihm/note/blob/master/imgs/Java/%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B.png](https://github.com/shenjiahuihm/note/blob/master/imgs/Java/线性探测.png))
+![](https://github.com/shenjiahuihm/note/blob/master/imgs/Java/线性探测.png))
 
 **特别对于开放定址法的删除操作，不能简单的进行物理删除，因为对于同义词来说，这个地址可能在其查找路径上，若物理删除的话，会中断查找路径，故只能设置删除标志。**
 
@@ -51,3 +51,5 @@
    di 为i*h2(key)，h2(key)是另一个散列函数。探测序列成：h2(key)，2h2(key)，3h2(key)，……。对任意的key，h2(key) ≠ 0 ！探测序列还应该保证所有的散列存储单元都应该能够被探测到。选择以下形式有良好的效果： 
    h2(key) = p - (key mod p) 
    其中：p < TableSize，p、TableSize都是素数。
+
+**再哈希法**：
