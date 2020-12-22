@@ -24,3 +24,8 @@
 
 [Java之访问权限](https://github.com/shenjiahuihm/note/blob/master/Java/Java%E8%AE%BF%E9%97%AE%E6%9D%83%E9%99%90.md)
 
+---
+12.22更新
+春招后来上岸了字节实习，然后秋招上岸了阿里菜鸟、腾讯csig、拼多多，最后决定去拼多多了（钱实在太多了）
+其实找工作也没有那么难，关键是心态和坚持。
+继续加油把。
